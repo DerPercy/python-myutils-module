@@ -7,5 +7,5 @@ setup(
    author='DerPercy',
    author_email='',
    packages=['myutils'],  #same as name
-   install_requires=[], #external packages as dependencies
+   install_requires=['openpyxl'], #external packages as dependencies
 )

@@ -5,6 +5,9 @@ import re
 import copy
 from ..valueParser import getValue
 
+import openpyxl
+
+
 class XLSXStorage:
     settings = {}
     def __init__(self,settings):
@@ -40,12 +43,38 @@ class XLSXStorage:
                 logging.debug("Filename valid")
                 fileobj = {}
                 extractValues(fname,fname_original,self.settings["xlsx"]["properties"],fileobj)
-                returnList.append(fileobj)
+                returnList.extend(readXLSX(fname,self.settings["xlsx"]["filecontent"],fileobj))
+                #readXLSX(fname,self.settings["xlsx"]["filecontent"],fileobj)
                 #logging.debug(z.groups()[0])
             else:
                 logging.debug("Filename invalid.Skipping")
 
         return returnList
+
+def readXLSX(filename,settings_filecontent,base_obj):
+    retList = []
+    logging.debug("Reading"+filename)
+    wb_obj = openpyxl.load_workbook(filename)
+    sheet = wb_obj.active
+    col_names = []
+
+    for i, row in enumerate(sheet.iter_rows(values_only=True)):
+        if i >= settings_filecontent["startrow"]:
+            #append
+            sub_obj = copy.deepcopy(base_obj)
+            #print(i)
+            #print(row)
+            for col in settings_filecontent["columns"]:
+                attrName = settings_filecontent["columns"][col];
+                #print(attrName)
+                #print(col)
+                sub_obj[attrName] = row[int(col)]
+            retList.append(sub_obj)
+        #for column in sheet.iter_cols(i, sheet.max_column):
+            #col_names.append(column[0].value)
+            #print(colums)
+    #print(col_names)
+    return retList
 
 def extractValues(content,pattern,properties,object):
     """

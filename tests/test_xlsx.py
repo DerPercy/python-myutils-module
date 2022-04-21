@@ -13,9 +13,9 @@ def test_xlsx_storage(caplog):
             "filepath": "data/xlsx/",
             "filename": "appointments_{year}.xlsx",
             "filecontent": {
-                "startrow": 2,
+                "startrow": 1,
                 "columns": {
-                    "1": "{date}",
+                    "0": "date",
                 }
             },
             "properties": {
@@ -26,10 +26,15 @@ def test_xlsx_storage(caplog):
     storage = XLSXStorage(settings)
     #caplog.set_level(logging.DEBUG)
     entities = storage.query({})
-    caplog.set_level(logging.DEBUG)
+    #caplog.set_level(logging.DEBUG)
     logging.debug(entities)
     assert isinstance(entities, list)
     assert len(entities) == 5
+    assert entities[0]["year"] == "2021"
+    assert entities[0]["date"] == "01.01.2021"
+    assert entities[4]["year"] == "2022"
+    assert entities[4]["date"] == "03.03.2022"
+
 
 def test_extract_values(caplog):
     obj = {}
