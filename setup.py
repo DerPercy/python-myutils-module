@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
    name='myutils',
-   version='0.0.1-alpha',
+   version='0.0.2-alpha',
    description='My utils module',
    author='DerPercy',
    author_email='',
