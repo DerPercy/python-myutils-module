@@ -8,5 +8,5 @@ setup(
    author_email='',
    packages=['myutils'],  #same as name
    include_dirs=['storage'],
-   install_requires=['openpyxl','.storage'], #external packages as dependencies
+   install_requires=['openpyxl'], #external packages as dependencies
 )
