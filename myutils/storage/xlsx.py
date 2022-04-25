@@ -25,7 +25,7 @@ class XLSXStorage:
             obj_glob[elm] = "*"
             obj_regex[elm] = self.settings["xlsx"]["properties"][elm]["pattern"]
 
-        fname_original = os.path.join(self.settings["xlsx"]["rootpath"], self.settings["xlsx"]["filepath"], self.settings["xlsx"]["filename"])
+        fname_original = self.settings["xlsx"]["filepattern"]
         logging.debug("Filename before replacement: "+fname_original)
         fname_glob = getValue(fname_original,obj_glob,methods)
         logging.debug("glob selector: "+fname_glob)

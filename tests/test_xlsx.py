@@ -7,11 +7,10 @@ import logging
 
 
 def test_xlsx_storage(caplog):
+    filepattern = os.path.join(os.path.dirname(__file__), "data/xlsx/appointments_{year}.xlsx")
     settings = {
         "xlsx": {
-            "rootpath": os.path.dirname(__file__),
-            "filepath": "data/xlsx/",
-            "filename": "appointments_{year}.xlsx",
+            "filepattern": filepattern,
             "filecontent": {
                 "startrow": 1,
                 "columns": {
