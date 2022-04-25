@@ -2,11 +2,10 @@ from setuptools import setup
 
 setup(
    name='myutils',
-   version='0.0.4-alpha',
+   version='0.0.7',
    description='My utils module',
    author='DerPercy',
    author_email='',
-   packages=['myutils'],  #same as name
-   include_dirs=['storage'],
+   packages=['myutils','myutils.storage'],  #same as name
    install_requires=['openpyxl'], #external packages as dependencies
 )
