@@ -30,6 +30,7 @@ class XLSXStorage:
         fname_glob = getValue(fname_original,obj_glob,methods)
         logging.debug("glob selector: "+fname_glob)
         fname_regex = fname_original
+        fname_regex = fname_regex.replace("\\","\\\\")
         fname_regex = fname_regex.replace("/","\\/")
         fname_regex = fname_regex.replace(".","\\.")
         fname_regex = getValue(fname_regex,obj_regex,methods)
