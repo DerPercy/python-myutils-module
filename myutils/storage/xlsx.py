@@ -30,10 +30,10 @@ class XLSXStorage:
         fname_glob = getValue(fname_original,obj_glob,methods)
         logging.debug("glob selector: "+fname_glob)
         fname_regex = fname_original
-        fname_regex = fname_regex.replace("\\","\\\\")
-        fname_regex = fname_regex.replace("/","\\/")
-        fname_regex = fname_regex.replace(".","\\.")
+
+        fname_regex = regex_prepare(fname_regex)
         fname_regex = getValue(fname_regex,obj_regex,methods)
+
         logging.debug("regex selector: "+fname_regex)
 
         filenamesList = glob.glob(fname_glob)
@@ -93,9 +93,19 @@ def extractValues(content,pattern,properties,object):
     for elm in properties:
         obj_group = copy.deepcopy(obj_regex)
         obj_group[elm] = "("+properties[elm]["pattern"]+")"
+        pattern = regex_prepare(pattern)
         cont_group = getValue(pattern,obj_group,methods)
         z = re.match(cont_group,content)
         if z:
             if len(z.groups()) > 0:
                 object[elm] = z.groups()[0]
     pass
+
+def regex_prepare(content):
+    """
+    Prepare a string to be a valid regex pattern
+    """
+    content = content.replace("\\","\\\\")
+    content = content.replace("/","\\/")
+    content = content.replace(".","\\.")
+    return content
