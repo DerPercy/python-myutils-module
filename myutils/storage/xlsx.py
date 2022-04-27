@@ -93,8 +93,8 @@ def extractValues(content,pattern,properties,object):
     for elm in properties:
         obj_group = copy.deepcopy(obj_regex)
         obj_group[elm] = "("+properties[elm]["pattern"]+")"
-        pattern = regex_prepare(pattern)
-        cont_group = getValue(pattern,obj_group,methods)
+        re_pattern = regex_prepare(pattern)
+        cont_group = getValue(re_pattern,obj_group,methods)
         z = re.match(cont_group,content)
         if z:
             if len(z.groups()) > 0:

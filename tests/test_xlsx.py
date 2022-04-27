@@ -18,6 +18,7 @@ def test_xlsx_storage(caplog):
                 }
             },
             "properties": {
+                "day": { "pattern": "\\d{2}" },
                 "year": { "pattern": "\\d{4}" }
             }
         }
