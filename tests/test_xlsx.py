@@ -35,6 +35,30 @@ def test_xlsx_storage(caplog):
     assert entities[4]["year"] == "2022"
     assert entities[4]["date"] == "03.03.2022"
 
+def test_xlsx_storage_stopat(caplog):
+    filepattern = os.path.join(os.path.dirname(__file__), "data/xlsx/appointments_abcd.xlsx")
+    settings = {
+        "xlsx": {
+            "filepattern": filepattern,
+            "filecontent": {
+                "stopatnonevalue": "0",
+                "startrow": 1,
+                "columns": {
+                    "0": "date",
+                    }
+            },
+            "properties": {
+                "day": { "pattern": "\\d{2}" },
+                "year": { "pattern": "\\d{4}" }
+            }
+        }
+    }
+    storage = XLSXStorage(settings)
+    #caplog.set_level(logging.DEBUG)
+    entities = storage.query({})
+    assert isinstance(entities, list)
+    assert len(entities) == 3
+
 
 def test_extract_values(caplog):
     obj = {}

@@ -7,11 +7,15 @@ varFuncClose = ")"
 
 
 
-def getValue(selector,obj, methods):
+def getValue(selector,obj, methods = None):
     """
     get the value
     :param selector:
     """
+    if methods == None:
+        class Methods:
+            pass
+        methods = Methods()
     sr = StringReader(selector)
     sw = StringWriter()
     handleStatic(sr,sw,obj,methods)

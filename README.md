@@ -12,3 +12,8 @@ pip install git+https://github.com/DerPercy/python-myutils-module.git
 ```
 python3 -m pytest tests
 ```
+
+## Changelog
+### 0.0.12
+* jsoUtils.groupObjects
+* xlsxstorage parameter "stopatnonevalue"

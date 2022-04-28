@@ -61,6 +61,10 @@ def readXLSX(filename,settings_filecontent,base_obj):
 
     for i, row in enumerate(sheet.iter_rows(values_only=True)):
         if i >= settings_filecontent["startrow"]:
+            # Check for Stopping at empty values
+            if "stopatnonevalue" in settings_filecontent:
+                if row[int(settings_filecontent["stopatnonevalue"])] == None:
+                    return retList
             #append
             sub_obj = copy.deepcopy(base_obj)
             #print(i)
