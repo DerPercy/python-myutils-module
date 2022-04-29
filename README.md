@@ -14,6 +14,15 @@ python3 -m pytest tests
 ```
 
 ## Changelog
+
+### 0.0.13
+* data Matrix
+* extend valueParser
+
 ### 0.0.12
 * jsoUtils.groupObjects
 * xlsxstorage parameter "stopatnonevalue"
+
+## Ideas
+### Data Matrix
+- RowSorter

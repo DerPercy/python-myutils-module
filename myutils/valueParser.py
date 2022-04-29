@@ -50,12 +50,18 @@ def handleFunction(sr,sw,obj,methods):
     while sr.hasNext():
         swParamValue = StringWriter()
         #print(sr.position)
-        handleStatic(sr,swParamValue,obj,methods)
-        paramValue = swParamValue.getString() #sr.getTillEnd()
-        logging.debug("ParamValue: "+paramValue)
+        if(sr.peekNumChars(2) == "{{"):
+            sr.getNumChars(2)
+            parmName = sr.getTill("}}")
+            parmArray.append(obj[parmName])
+            sr.getTillEnd() # ignore following content
+        else:
+            handleStatic(sr,swParamValue,obj,methods)
+            paramValue = swParamValue.getString() #sr.getTillEnd()
+            logging.debug("ParamValue: "+paramValue)
+            parmArray.append(paramValue)
 
         #print("Paramvalue:"+paramValue)
-        parmArray.append(paramValue)
         #print(sr.getBreak())
         #print(sr.position)
         logging.debug("Break: "+sr.getBreak())
@@ -92,14 +98,30 @@ class StringReader:
         if len(self.breakPositions) > 0:
             return self.breakPositions[-1]
         return len( self.content )
-
+    #
+    # Peeker
+    #
     def peekTillEnd(self):
         return self.content[self.position:self.getLastPosition()]
+    def peekNumChars(self,numChars):
+        return self.content[self.position:self.position + numChars]
+
+
+
+    #
+    # Getter
+    #
     def getTillEnd(self):
         content = self.content[self.position:self.getLastPosition()]
         logging.debug("StringReader.getTillEnd() ->"+content)
         self.setPosition(self.getLastPosition())
         return content
+    def getNumChars(self,numChars):
+        if numChars < 0:
+            numChars = 0
+        oldpos = self.position
+        self.setPosition(oldpos + numChars)
+        return self.content[oldpos:self.position]
 
 
     def charExists(self,search):
