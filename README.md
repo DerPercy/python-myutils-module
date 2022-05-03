@@ -15,6 +15,9 @@ python3 -m pytest tests
 
 ## Changelog
 
+### 0.0.14
+* data matrix: ColumnAggregator (sum up values on column level and footer)
+
 ### 0.0.13
 * data Matrix
 * extend valueParser
