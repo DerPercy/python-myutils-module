@@ -15,6 +15,9 @@ python3 -m pytest tests
 
 ## Changelog
 
+### 0.0.15
+* Markdown preparation
+
 ### 0.0.14
 * data matrix: ColumnAggregator (sum up values on column level and footer)
 
@@ -27,5 +30,6 @@ python3 -m pytest tests
 * xlsxstorage parameter "stopatnonevalue"
 
 ## Ideas
+* Markdown wiki
 ### Data Matrix
 - RowSorter
