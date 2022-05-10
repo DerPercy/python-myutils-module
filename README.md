@@ -15,6 +15,13 @@ python3 -m pytest tests
 
 ## Changelog
 
+### 0.0.16
+* Markdown
+  * fileencoding
+  * getter for full filename (for triggering opening file)
+  * handling opening directory
+  * List files in directory
+
 ### 0.0.15
 * Markdown preparation
 
@@ -30,6 +37,8 @@ python3 -m pytest tests
 * xlsxstorage parameter "stopatnonevalue"
 
 ## Ideas
-* Markdown wiki
+### Markdown wiki
+*
+
 ### Data Matrix
 - RowSorter
